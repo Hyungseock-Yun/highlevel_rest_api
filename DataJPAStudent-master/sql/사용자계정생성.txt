@@ -1,0 +1,15 @@
+# root 계정으로 접속하여 사용자 계정 생성
+$ mysql -u root –p
+MariaDB [(none)]> show databases;
+MariaDB [(none)]> use mysql;
+MariaDB [(mysql)]> CREATE DATABASE jpadb;
+MariaDB [(mysql)]> CREATE USER 'jpa'@'%' IDENTIFIED BY 'jpa';
+MariaDB [(mysql)]> GRANT ALL PRIVILEGES ON jpadb.* TO 'jpa'@'%';
+MariaDB [(mysql)]> flush privileges;
+MariaDB [(mysql)]> exit;
+
+# boot 계정으로 접속하여 DB생성
+mysql -u jpa –p
+MariaDB [(none)]> show grants for current_user;
+MariaDB [(none)]> show databases;
+MariaDB [(none)]> use jpadb;
